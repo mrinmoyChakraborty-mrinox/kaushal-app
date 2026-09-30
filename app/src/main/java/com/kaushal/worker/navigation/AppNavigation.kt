@@ -26,7 +26,6 @@ import com.kaushal.worker.screens.assessment.AssessmentScreen
 import com.kaushal.worker.screens.certificates.CertificatesScreen
 import com.kaushal.worker.screens.progress.ProgressScreen
 import com.kaushal.worker.screens.profile.ProfileScreen
-import com.kaushal.worker.navigation.Routes
 
 @Composable
 fun AppNavigation(appState: TemporaryAppViewModel) {
@@ -48,7 +47,13 @@ fun AppNavigation(appState: TemporaryAppViewModel) {
             LanguageScreen(
                 selected = session.profile.language,
                 onSelect = appState::setLanguage,
-                onContinue = { navController.navigate(Routes.Benefits) },
+                onContinue = {
+                    if (session.isTemporarilyAuthenticated) {
+                        navController.popBackStack()
+                    } else {
+                        navController.navigate(Routes.Benefits)
+                    }
+                },
                 onBack = { navController.popBackStack() }
             )
         }
@@ -93,8 +98,8 @@ fun AppNavigation(appState: TemporaryAppViewModel) {
 
         composable(Routes.Register) {
             RegisterScreen(
-                onCreateAccount = { name, mobile ->
-                    appState.setRegistration(name, mobile)
+                onCreateAccount = { name, mobile, photoUri ->
+                    appState.setRegistration(name, mobile, photoUri)
                     navController.navigate(Routes.RegisterOtp)
                 },
                 onLogin = { navController.navigate(Routes.Login) },
@@ -139,9 +144,17 @@ fun AppNavigation(appState: TemporaryAppViewModel) {
                 profile = session.profile,
                 onNavigate = { target ->
                     when (target) {
+                        "Home" -> {
+                            if (navController.currentDestination?.route != Routes.Dashboard) {
+                                navController.navigate(Routes.Dashboard) {
+                                    popUpTo(Routes.Dashboard) { inclusive = true }
+                                }
+                            }
+                        }
                         "Learn" -> navController.navigate(Routes.LearningModules)
                         "Progress" -> navController.navigate(Routes.Progress)
                         "Profile" -> navController.navigate(Routes.Profile)
+                        "Language" -> navController.navigate(Routes.Language)
                         "Field Book" -> navController.navigate(Routes.FieldBook)
                         "AR Training" -> navController.navigate(Routes.ArTraining.replace("{moduleId}", "fire"))
                         "Certificates" -> navController.navigate(Routes.Certificates)
@@ -153,6 +166,20 @@ fun AppNavigation(appState: TemporaryAppViewModel) {
         composable(Routes.LearningModules) {
             LearningModulesScreen(
                 onBack = { navController.popBackStack() },
+                onNavigate = { target ->
+                    when (target) {
+                        "Home" -> navController.navigate(Routes.Dashboard)
+                        "Learn" -> {
+                            if (navController.currentDestination?.route != Routes.LearningModules) {
+                                navController.navigate(Routes.LearningModules) {
+                                    popUpTo(Routes.LearningModules) { inclusive = true }
+                                }
+                            }
+                        }
+                        "Progress" -> navController.navigate(Routes.Progress)
+                        "Profile" -> navController.navigate(Routes.Profile)
+                    }
+                },
                 onModule = { id -> navController.navigate(Routes.ModuleDetail.replace("{moduleId}", id)) }
             )
         }
@@ -198,6 +225,13 @@ fun AppNavigation(appState: TemporaryAppViewModel) {
                     when (target) {
                         "Home" -> navController.navigate(Routes.Dashboard)
                         "Learn" -> navController.navigate(Routes.LearningModules)
+                        "Progress" -> {
+                            if (navController.currentDestination?.route != Routes.Progress) {
+                                navController.navigate(Routes.Progress) {
+                                    popUpTo(Routes.Progress) { inclusive = true }
+                                }
+                            }
+                        }
                         "Profile" -> navController.navigate(Routes.Profile)
                     }
                 }
@@ -208,6 +242,22 @@ fun AppNavigation(appState: TemporaryAppViewModel) {
             ProfileScreen(
                 profile = session.profile,
                 onBack = { navController.popBackStack() },
+                onNavigate = { target ->
+                    when (target) {
+                        "Home" -> navController.navigate(Routes.Dashboard)
+                        "Learn" -> navController.navigate(Routes.LearningModules)
+                        "Progress" -> navController.navigate(Routes.Progress)
+                        "Profile" -> {
+                            if (navController.currentDestination?.route != Routes.Profile) {
+                                navController.navigate(Routes.Profile) {
+                                    popUpTo(Routes.Profile) { inclusive = true }
+                                }
+                            }
+                        }
+                        "Language" -> navController.navigate(Routes.Language)
+                    }
+                },
+                onUpdatePhoto = appState::setProfilePhoto,
                 onLogout = {
                     appState.logout()
                     navController.navigate(Routes.Welcome) {

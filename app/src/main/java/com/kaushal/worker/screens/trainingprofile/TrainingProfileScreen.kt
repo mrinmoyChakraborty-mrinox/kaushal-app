@@ -10,8 +10,10 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.kaushal.worker.R
 import com.kaushal.worker.TemporaryUserProfile
 import com.kaushal.worker.ui.components.KaushalButton
 import com.kaushal.worker.ui.components.ScreenTopBar
@@ -34,6 +36,9 @@ fun TrainingProfileScreen(
     var showSubSectorDialog by remember { mutableStateOf(false) }
     var error by remember { mutableStateOf("") }
 
+    val errSector = stringResource(R.string.tp_err_sector)
+    val errSubSector = stringResource(R.string.tp_err_subsector)
+
     val subOptions = when (sector) {
         "Mining" -> listOf("Open Cast", "Underground Mining")
         "Steel Manufacturing" -> listOf("Hot Metal Production", "Rolling Mills and Processing")
@@ -43,7 +48,7 @@ fun TrainingProfileScreen(
 
     if (showSectorDialog) {
         ChoiceDialog(
-            title = "Select Industrial Sector",
+            title = stringResource(R.string.tp_dialog_sector_title),
             options = listOf("Mining", "Steel Manufacturing", "Mica Processing"),
             selected = sector,
             onDismiss = { showSectorDialog = false },
@@ -58,7 +63,7 @@ fun TrainingProfileScreen(
 
     if (showSubSectorDialog) {
         ChoiceDialog(
-            title = "Select Sub-Sector",
+            title = stringResource(R.string.tp_dialog_subsector_title),
             options = subOptions,
             selected = subSector,
             onDismiss = { showSubSectorDialog = false },
@@ -77,10 +82,10 @@ fun TrainingProfileScreen(
             .verticalScroll(rememberScrollState())
             .padding(horizontal = 18.dp)
     ) {
-        ScreenTopBar("Set Up Your Training Profile", onBack = onBack)
+        ScreenTopBar(stringResource(R.string.tp_title), onBack = onBack)
 
         Text(
-            "Help us personalise your learning experience.",
+            stringResource(R.string.tp_subtitle),
             color = KaushalMuted,
             modifier = Modifier.padding(horizontal = 8.dp)
         )
@@ -89,16 +94,19 @@ fun TrainingProfileScreen(
         StepIndicator()
         Spacer(Modifier.height(16.dp))
 
-        ReadOnlyField("Full Name", initial.name)
+        ReadOnlyField(stringResource(R.string.label_full_name), initial.name)
         Spacer(Modifier.height(10.dp))
-        ReadOnlyField("Mobile Number", if (initial.mobileNumber.isBlank()) "Not provided" else "+91 ${initial.mobileNumber}")
+        ReadOnlyField(
+            stringResource(R.string.profile_mobile_number),
+            if (initial.mobileNumber.isBlank()) stringResource(R.string.status_not_entered) else "+91 ${initial.mobileNumber}"
+        )
         Spacer(Modifier.height(10.dp))
 
         OutlinedTextField(
             value = workerId,
             onValueChange = { workerId = it },
             modifier = Modifier.fillMaxWidth(),
-            label = { Text("Worker ID (Optional)") },
+            label = { Text(stringResource(R.string.tp_worker_id_label)) },
             singleLine = true,
             shape = RoundedCornerShape(15.dp),
             colors = OutlinedTextFieldDefaults.colors(
@@ -110,17 +118,17 @@ fun TrainingProfileScreen(
 
         Spacer(Modifier.height(10.dp))
         SelectField(
-            label = "Industrial Sector",
+            label = stringResource(R.string.profile_sector),
             value = sector,
-            placeholder = "Select industrial sector",
+            placeholder = stringResource(R.string.tp_select_sector),
             onClick = { showSectorDialog = true }
         )
 
         Spacer(Modifier.height(10.dp))
         SelectField(
-            label = "Sub-Sector",
+            label = stringResource(R.string.profile_subsector),
             value = subSector,
-            placeholder = if (sector.isBlank()) "Select industrial sector first" else "Select sub-sector",
+            placeholder = if (sector.isBlank()) stringResource(R.string.tp_select_sector_first) else stringResource(R.string.tp_select_subsector),
             enabled = sector.isNotBlank(),
             onClick = { showSubSectorDialog = true }
         )
@@ -134,10 +142,10 @@ fun TrainingProfileScreen(
         }
 
         Spacer(Modifier.height(18.dp))
-        KaushalButton("CONTINUE", onClick = {
+        KaushalButton(stringResource(R.string.action_continue), onClick = {
             when {
-                sector.isBlank() -> error = "Please select an industrial sector."
-                subSector.isBlank() -> error = "Please select a sub-sector."
+                sector.isBlank() -> error = errSector
+                subSector.isBlank() -> error = errSubSector
                 else -> onContinue(
                     initial.language.ifBlank { "en" },
                     sector,
@@ -170,9 +178,6 @@ private fun StepIndicator() {
                             fontWeight = FontWeight.Bold
                         )
                     }
-                }
-                if (step < 4) {
-                    // spacing is handled by the parent; the target only needs a compact step indicator.
                 }
             }
         }
@@ -218,32 +223,18 @@ private fun SelectField(
             value = value,
             onValueChange = {},
             readOnly = true,
-
-            // Important:
-            // The outer Box handles the click.
-            // Keeping this field disabled prevents it from consuming the tap.
             enabled = false,
-
             modifier = Modifier.fillMaxWidth(),
-
-            label = {
-                Text(label)
-            },
-
-            placeholder = {
-                Text(placeholder)
-            },
-
+            label = { Text(label) },
+            placeholder = { Text(placeholder) },
             trailingIcon = {
                 Text(
                     "⌄",
                     color = if (enabled) KaushalNavy else KaushalMuted
                 )
             },
-
             singleLine = true,
             shape = RoundedCornerShape(15.dp),
-
             colors = OutlinedTextFieldDefaults.colors(
                 disabledBorderColor = KaushalBorder,
                 disabledTextColor = KaushalNavy,
@@ -254,6 +245,7 @@ private fun SelectField(
         )
     }
 }
+
 @Composable
 private fun ChoiceDialog(
     title: String,
@@ -291,7 +283,7 @@ private fun ChoiceDialog(
         },
         confirmButton = {
             TextButton(onClick = onDismiss) {
-                Text("CLOSE", color = KaushalOrange)
+                Text(stringResource(R.string.action_close), color = KaushalOrange)
             }
         }
     )

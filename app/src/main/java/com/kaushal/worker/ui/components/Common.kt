@@ -1,5 +1,6 @@
 package com.kaushal.worker.ui.components
 
+import androidx.annotation.StringRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -7,6 +8,8 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.MenuBook
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -14,8 +17,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
+import com.kaushal.worker.R
 import com.kaushal.worker.ui.theme.*
 
 @Composable
@@ -41,7 +50,6 @@ fun OutlinedKaushalButton(text: String, onClick: () -> Unit, modifier: Modifier 
         onClick = onClick,
         modifier = modifier.height(56.dp).fillMaxWidth(),
         shape = RoundedCornerShape(18.dp),
-        border = ButtonDefaults.outlinedButtonBorder.copy(width = 2.dp),
         colors = ButtonDefaults.outlinedButtonColors(contentColor = KaushalNavy)
     ) {
         Text(text, fontWeight = FontWeight.Bold)
@@ -72,12 +80,74 @@ fun ScreenTopBar(title: String, onBack: (() -> Unit)? = null, actions: @Composab
         verticalAlignment = Alignment.CenterVertically
     ) {
         if (onBack != null) {
-            IconButton(onClick = onBack) { Icon(Icons.Default.ArrowBack, null, tint = KaushalNavy) }
+            IconButton(onClick = onBack) { Icon(Icons.AutoMirrored.Filled.ArrowBack, null, tint = KaushalNavy) }
         } else {
             Spacer(Modifier.width(8.dp))
         }
         Text(title, style = MaterialTheme.typography.titleLarge, modifier = Modifier.weight(1f))
         Row(content = actions)
+    }
+}
+
+@Composable
+fun ProfileAvatar(
+    photoUri: String?,
+    size: Dp = 48.dp,
+    onClick: (() -> Unit)? = null,
+    showAddBadge: Boolean = false,
+    modifier: Modifier = Modifier
+) {
+    val clickableModifier = if (onClick != null) modifier.clickable(onClick = onClick) else modifier
+
+    Box(
+        modifier = clickableModifier.size(size),
+        contentAlignment = Alignment.Center
+    ) {
+        if (!photoUri.isNullOrBlank()) {
+            AsyncImage(
+                model = photoUri,
+                contentDescription = "Profile Photo",
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .fillMaxSize()
+                    .clip(CircleShape)
+                    .border(2.dp, KaushalOrange, CircleShape)
+            )
+        } else {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .clip(CircleShape)
+                    .background(Color(0xFFFFE9D6))
+                    .border(1.5.dp, KaushalOrange, CircleShape),
+                contentAlignment = Alignment.Center
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Person,
+                    contentDescription = "Profile",
+                    tint = KaushalNavy,
+                    modifier = Modifier.fillMaxSize(0.6f)
+                )
+            }
+        }
+
+        if (showAddBadge) {
+            Box(
+                modifier = Modifier
+                    .size(size * 0.32f)
+                    .align(Alignment.BottomEnd)
+                    .clip(CircleShape)
+                    .background(KaushalOrange),
+                contentAlignment = Alignment.Center
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Add,
+                    contentDescription = "Add Photo",
+                    tint = Color.White,
+                    modifier = Modifier.fillMaxSize(0.7f)
+                )
+            }
+        }
     }
 }
 
@@ -138,20 +208,28 @@ fun SelectionRow(title: String, subtitle: String? = null, selected: Boolean, onC
     }
 }
 
+private data class NavItem(
+    val key: String,
+    @StringRes val labelResId: Int,
+    val icon: ImageVector
+)
+
 @Composable
 fun BottomNavigationBar(current: String, onNavigate: (String) -> Unit) {
+    val items = listOf(
+        NavItem("Home", R.string.nav_home, Icons.Default.Home),
+        NavItem("Learn", R.string.nav_learn, Icons.AutoMirrored.Filled.MenuBook),
+        NavItem("Progress", R.string.nav_progress, Icons.Default.BarChart),
+        NavItem("Profile", R.string.nav_profile, Icons.Default.Person)
+    )
+
     NavigationBar(containerColor = Color.White) {
-        listOf(
-            "Home" to Icons.Default.Home,
-            "Learn" to Icons.Default.MenuBook,
-            "Progress" to Icons.Default.BarChart,
-            "Profile" to Icons.Default.Person
-        ).forEach { (label, icon) ->
+        items.forEach { item ->
             NavigationBarItem(
-                selected = current == label,
-                onClick = { onNavigate(label) },
-                icon = { Icon(icon, null) },
-                label = { Text(label) }
+                selected = current == item.key,
+                onClick = { onNavigate(item.key) },
+                icon = { Icon(item.icon, contentDescription = stringResource(item.labelResId)) },
+                label = { Text(stringResource(item.labelResId)) }
             )
         }
     }
