@@ -1,5 +1,6 @@
 package com.kaushal.worker.screens.onboarding
 
+import androidx.annotation.StringRes
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -26,6 +27,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -49,7 +51,7 @@ private fun OnboardingBackButton(onBack: () -> Unit) {
     ) {
         Icon(
             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-            contentDescription = "Back",
+            contentDescription = stringResource(R.string.action_back),
             tint = KaushalNavy
         )
     }
@@ -125,26 +127,26 @@ fun WelcomeScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = "Welcome to",
+                text = stringResource(R.string.welcome_title),
                 color = Color(0xFF252525),
                 fontWeight = FontWeight.Bold,
                 style = androidx.compose.material3.MaterialTheme.typography.headlineMedium
             )
             Text(
-                text = "KAUSHAL",
+                text = stringResource(R.string.app_name),
                 color = KaushalNavy,
                 fontWeight = FontWeight.ExtraBold,
                 style = androidx.compose.material3.MaterialTheme.typography.displaySmall
             )
             Text(
-                text = "Learn • Practice • Stay Safe",
+                text = stringResource(R.string.welcome_tagline),
                 color = KaushalGray,
                 style = androidx.compose.material3.MaterialTheme.typography.titleMedium,
                 modifier = Modifier.padding(top = 2.dp, bottom = 22.dp)
             )
-            OrangeButton("GET STARTED", onGetStarted)
+            OrangeButton(stringResource(R.string.welcome_btn_get_started), onGetStarted)
             Spacer(Modifier.height(12.dp))
-            AccountButton("I ALREADY HAVE AN ACCOUNT", onLogin)
+            AccountButton(stringResource(R.string.welcome_btn_already_account), onLogin)
         }
     }
 }
@@ -256,7 +258,7 @@ fun LanguageScreen(
                 .padding(top = 86.dp)
         ) {
             Spacer(Modifier.height(126.dp))
-            SpeechBubble("What language do you speak?")
+            SpeechBubble(stringResource(R.string.language_prompt))
         }
 
         Column(
@@ -275,7 +277,7 @@ fun LanguageScreen(
             }
             Spacer(Modifier.weight(1f))
             OrangeButton(
-                text = "CONTINUE",
+                text = stringResource(R.string.action_continue),
                 onClick = onContinue,
                 enabled = selected.isNotBlank()
             )
@@ -284,8 +286,8 @@ fun LanguageScreen(
 }
 
 private data class TrainingBenefit(
-    val title: String,
-    val description: String,
+    @StringRes val titleResId: Int,
+    @StringRes val descResId: Int,
     val symbol: String,
     val tint: Color
 )
@@ -313,12 +315,12 @@ private fun TrainingBenefitRow(benefit: TrainingBenefit) {
         Spacer(Modifier.width(14.dp))
         Column(Modifier.weight(1f)) {
             Text(
-                benefit.title,
+                stringResource(benefit.titleResId),
                 color = KaushalNavy,
                 fontWeight = FontWeight.Bold
             )
             Spacer(Modifier.height(3.dp))
-            Text(benefit.description, color = KaushalGray)
+            Text(stringResource(benefit.descResId), color = KaushalGray)
         }
     }
 }
@@ -330,32 +332,32 @@ fun TrainingBenefitsScreen(
 ) {
     val benefits = listOf(
         TrainingBenefit(
-            "Spot hazards in your workplace",
-            "Identify potential risks before they become dangerous.",
+            R.string.benefit_1_title,
+            R.string.benefit_1_desc,
             "!",
             Color(0xFFFFF0E8)
         ),
         TrainingBenefit(
-            "Respond correctly to emergencies",
-            "Know what to do during fire, gas leaks, equipment failures, and more.",
+            R.string.benefit_2_title,
+            R.string.benefit_2_desc,
             "🚨",
             Color(0xFFEAF4FF)
         ),
         TrainingBenefit(
-            "Choose the right PPE and equipment",
-            "Select and use the correct protective equipment for your work environment.",
+            R.string.benefit_3_title,
+            R.string.benefit_3_desc,
             "🦺",
             Color(0xFFEAFBEF)
         ),
         TrainingBenefit(
-            "Practice safely with AR simulations",
-            "Experience real workplace situations using your phone.",
+            R.string.benefit_4_title,
+            R.string.benefit_4_desc,
             "📱",
             Color(0xFFF2EDFF)
         ),
         TrainingBenefit(
-            "Pass your safety assessment & get certified",
-            "Complete assessments, earn a verified digital certificate, and build your Safety Passport.",
+            R.string.benefit_5_title,
+            R.string.benefit_5_desc,
             "★",
             Color(0xFFFFF7DB)
         )
@@ -384,7 +386,7 @@ fun TrainingBenefitsScreen(
                 .padding(top = 76.dp)
         ) {
             Spacer(Modifier.height(128.dp))
-            SpeechBubble("Here's what you'll be able to do after your training!")
+            SpeechBubble(stringResource(R.string.benefits_prompt))
         }
 
         Column(
@@ -402,7 +404,7 @@ fun TrainingBenefitsScreen(
                 }
             }
             Spacer(Modifier.height(10.dp))
-            OrangeButton("CONTINUE", onContinue)
+            OrangeButton(stringResource(R.string.action_continue), onContinue)
         }
     }
 }

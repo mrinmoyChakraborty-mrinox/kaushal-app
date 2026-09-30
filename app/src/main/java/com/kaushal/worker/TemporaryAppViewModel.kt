@@ -17,7 +17,8 @@ data class TemporaryUserProfile(
     val department: String = "",
     val role: String = "",
     val workerId: String = "",
-    val workerVerificationStatus: WorkerVerificationStatus = WorkerVerificationStatus.NOT_SUBMITTED
+    val workerVerificationStatus: WorkerVerificationStatus = WorkerVerificationStatus.NOT_SUBMITTED,
+    val profilePhotoUri: String? = null
 )
 
 data class TemporarySession(
@@ -36,11 +37,18 @@ class TemporaryAppViewModel : ViewModel() {
         )
     }
 
-    fun setRegistration(name: String, mobile: String) {
+    fun setProfilePhoto(photoUri: String?) {
+        _session.value = _session.value.copy(
+            profile = _session.value.profile.copy(profilePhotoUri = photoUri)
+        )
+    }
+
+    fun setRegistration(name: String, mobile: String, photoUri: String? = null) {
         _session.value = _session.value.copy(
             profile = _session.value.profile.copy(
                 name = name,
-                mobileNumber = mobile
+                mobileNumber = mobile,
+                profilePhotoUri = photoUri ?: _session.value.profile.profilePhotoUri
             )
         )
     }
