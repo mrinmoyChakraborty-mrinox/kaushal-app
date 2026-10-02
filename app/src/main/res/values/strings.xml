@@ -1,0 +1,200 @@
+<resources>
+    <string name="app_name">KAUSHAL</string>
+
+    <!-- Navigation -->
+    <string name="nav_home">Home</string>
+    <string name="nav_learn">Learn</string>
+    <string name="nav_progress">Progress</string>
+    <string name="nav_profile">Profile</string>
+
+    <!-- Common Actions & Labels -->
+    <string name="action_back">Back</string>
+    <string name="action_close">CLOSE</string>
+    <string name="action_continue">CONTINUE</string>
+    <string name="action_ok">OK</string>
+    <string name="status_not_entered">Not entered</string>
+    <string name="status_not_added">Not added</string>
+    <string name="status_not_selected">Not selected</string>
+    <string name="status_verification_pending">Verification pending</string>
+    <string name="learner">Learner</string>
+
+    <!-- Dashboard -->
+    <string name="dashboard_good_morning">Good morning,</string>
+    <string name="dashboard_default_name">KAUSHAL Learner</string>
+    <string name="dashboard_start_journey_title">Start Your Safety Learning Journey</string>
+    <string name="dashboard_no_modules_assigned">No training modules assigned yet.</string>
+    <string name="dashboard_explore_training">EXPLORE TRAINING</string>
+    <string name="dashboard_quick_actions">Quick Actions</string>
+    <string name="dashboard_learning_modules">Learning\nModules</string>
+    <string name="dashboard_my_progress">My\nProgress</string>
+    <string name="dashboard_certificates">Certificates</string>
+    <string name="dashboard_field_book">Field\nBook</string>
+    <string name="dashboard_ar_training">AR\nTraining</string>
+    <string name="dashboard_safety_passport">Safety\nPassport</string>
+    <string name="dashboard_notifications">Notifications</string>
+    <string name="dashboard_no_notifications">No new notifications</string>
+    <string name="dashboard_continue_learning">Continue Learning</string>
+    <string name="dashboard_progress_overview">Progress Overview</string>
+    <string name="dashboard_start_first_module">Start Your First Module</string>
+    <string name="dashboard_no_completed_modules">No completed modules yet</string>
+    <string name="dashboard_start_learning_desc">Start learning to track your progress</string>
+
+    <!-- Custom Notification Dialog -->
+    <string name="notif_dialog_title">Stay Updated</string>
+    <string name="notif_dialog_desc">Turn on notifications to get important updates about your assigned training, new modules, assessments, and certificates.</string>
+    <string name="notif_dialog_turn_on">Turn On Notifications</string>
+    <string name="notif_dialog_not_now">Not Now</string>
+
+    <!-- Profile Photo Labels -->
+    <string name="profile_add_photo">Add Photo</string>
+    <string name="profile_change_photo">Change Photo</string>
+    <string name="profile_remove_photo">Remove Photo</string>
+    <string name="profile_photo_optional">Optional</string>
+
+    <!-- Modules -->
+    <string name="module_fire_title">Fire &amp; Explosion Response</string>
+    <string name="module_fire_desc">Learn fire safety, prevention and emergency response procedures.</string>
+    <string name="module_gas_title">Gas Leak &amp; Confined Space</string>
+    <string name="module_gas_desc">Stay safe in hazardous gas and confined environments.</string>
+    <string name="module_machinery_title">Machinery Safety</string>
+    <string name="module_machinery_desc">Learn safe operation and maintenance practices.</string>
+    <string name="module_ppe_title">PPE &amp; Workplace Safety</string>
+    <string name="module_ppe_desc">Use the right protective equipment for your work.</string>
+    <string name="module_laws_title">Mine Laws &amp; Workers\' Rights</string>
+    <string name="module_laws_desc">Understand worker rights, rules and legal safety requirements.</string>
+
+    <!-- Learning Modules Screen -->
+    <string name="modules_title">Learning Modules</string>
+    <string name="modules_subtitle">Your safety training modules</string>
+    <string name="modules_note">Available product content is shown below. Progress appears only when real state exists.</string>
+    <string name="btn_start_learning">START LEARNING</string>
+    <string name="btn_ar_training">AR TRAINING</string>
+    <string name="btn_take_assessment">TAKE ASSESSMENT</string>
+    <string name="btn_view_certificate">🔒  VIEW CERTIFICATE</string>
+    <string name="module_certificate_locked">Certificate remains locked until an actual qualifying completion exists.</string>
+
+    <!-- Profile Screen -->
+    <string name="profile_title">My Profile</string>
+    <string name="profile_your_name">Your Name</string>
+    <string name="profile_mobile_number">Mobile Number</string>
+    <string name="profile_worker_id">Worker ID</string>
+    <string name="profile_status">Status</string>
+    <string name="profile_sector">Industrial Sector</string>
+    <string name="profile_subsector">Sub-Sector</string>
+    <string name="profile_department">Department / Operation</string>
+    <string name="profile_role">Role</string>
+    <string name="profile_language">Language</string>
+    <string name="profile_notification_settings">Notification Settings</string>
+    <string name="profile_help_support">Help &amp; Support</string>
+    <string name="profile_logout">Logout</string>
+
+    <!-- Onboarding & Language -->
+    <string name="welcome_title">Welcome to</string>
+    <string name="welcome_tagline">Learn • Practice • Stay Safe</string>
+    <string name="welcome_btn_get_started">GET STARTED</string>
+    <string name="welcome_btn_already_account">I ALREADY HAVE AN ACCOUNT</string>
+    <string name="language_prompt">What language do you speak?</string>
+    <string name="benefits_prompt">Here\'s what you\'ll be able to do after your training!</string>
+
+    <string name="benefit_1_title">Spot hazards in your workplace</string>
+    <string name="benefit_1_desc">Identify potential risks before they become dangerous.</string>
+    <string name="benefit_2_title">Respond correctly to emergencies</string>
+    <string name="benefit_2_desc">Know what to do during fire, gas leaks, equipment failures, and more.</string>
+    <string name="benefit_3_title">Choose the right PPE and equipment</string>
+    <string name="benefit_3_desc">Select and use the correct protective equipment for your work environment.</string>
+    <string name="benefit_4_title">Practice safely with AR simulations</string>
+    <string name="benefit_4_desc">Experience real workplace situations using your phone.</string>
+    <string name="benefit_5_title">Pass your safety assessment &amp; get certified</string>
+    <string name="benefit_5_desc">Complete assessments, earn a verified digital certificate, and build your Safety Passport.</string>
+
+    <!-- Auth -->
+    <string name="auth_app_title">KAUSHAL</string>
+    <string name="login_welcome">Welcome back!</string>
+    <string name="login_subtitle">Sign in with your mobile number and a secure OTP.</string>
+    <string name="label_mobile">+91   Mobile Number</string>
+    <string name="label_full_name">Full Name</string>
+    <string name="btn_send_otp">SEND OTP</string>
+    <string name="btn_verify_login">VERIFY &amp; LOGIN</string>
+    <string name="btn_verify_continue">VERIFY &amp; CONTINUE</string>
+    <string name="btn_create_account">CREATE ACCOUNT</string>
+    <string name="login_prompt_register">Don\'t have an account?</string>
+    <string name="btn_register">Register</string>
+    <string name="register_title">Create Your KAUSHAL Account</string>
+    <string name="register_subtitle">Enter your details to get started.</string>
+    <string name="register_prompt_login">Already have an account?  Login</string>
+    <string name="otp_title">Enter OTP</string>
+    <string name="otp_subtitle">We have sent a 6-digit OTP to</string>
+    <string name="otp_resend">Didn\'t receive code?  Resend OTP</string>
+    <string name="otp_testing_note">UI testing only • no real SMS is sent.</string>
+    <string name="err_invalid_mobile">Please enter a valid 10-digit mobile number.</string>
+    <string name="err_enter_name">Please enter your full name.</string>
+    <string name="err_invalid_otp">Please enter all 6 OTP digits.</string>
+
+    <!-- Training Profile -->
+    <string name="tp_title">Set Up Your Training Profile</string>
+    <string name="tp_subtitle">Help us personalise your learning experience.</string>
+    <string name="tp_worker_id_label">Worker ID (Optional)</string>
+    <string name="tp_select_sector">Select industrial sector</string>
+    <string name="tp_select_sector_first">Select industrial sector first</string>
+    <string name="tp_select_subsector">Select sub-sector</string>
+    <string name="tp_err_sector">Please select an industrial sector.</string>
+    <string name="tp_err_subsector">Please select a sub-sector.</string>
+    <string name="tp_dialog_sector_title">Select Industrial Sector</string>
+    <string name="tp_dialog_subsector_title">Select Sub-Sector</string>
+
+    <!-- Progress -->
+    <string name="progress_title">My Progress</string>
+    <string name="progress_empty_title">No modules completed yet</string>
+    <string name="progress_empty_desc">Progress is calculated only from real local/backend state.</string>
+
+    <!-- Certificates -->
+    <string name="cert_title">My Certificates</string>
+    <string name="cert_empty_title">No Certificates Yet</string>
+    <string name="cert_empty_desc">Complete module assessments to earn your certificates.</string>
+
+    <!-- Field Book -->
+    <string name="fieldbook_title">Field Book</string>
+    <string name="fieldbook_subtitle">Your interactive safety manual</string>
+    <string name="fieldbook_desc">Two layers: read the safety knowledge, then practice through interactive exercises.</string>
+    <string name="fieldbook_l1_title">LAYER 1 — BOOK</string>
+    <string name="fieldbook_l1_desc">Illustration • story • safety knowledge</string>
+    <string name="fieldbook_l2_title">LAYER 2 — INTERACTIVE</string>
+    <string name="fieldbook_l2_desc">Tap • drag • scan • identify • choose • arrange • simulate</string>
+    <string name="fieldbook_note">Training assets are not connected in this UI-only milestone.</string>
+
+    <!-- AR Training -->
+    <string name="ar_title">AR Training</string>
+    <string name="ar_soon_title">AR training for this module will be available soon.</string>
+    <string name="ar_soon_desc">We are preparing real workplace simulations for hands-on learning with your phone.</string>
+    <string name="btn_coming_soon">COMING SOON</string>
+
+    <!-- Assessment -->
+    <string name="assessment_title">Assessment</string>
+    <string name="assessment_soon_title">Assessment content coming soon</string>
+    <string name="assessment_soon_desc">No real questions or scores are supplied in the current UI-testing phase.</string>
+
+    <!-- Module 1 Story & Assessment Localized Strings -->
+    <string name="m1_header">Module 1</string>
+    <string name="m1_subtitle">Story-based safety learning</string>
+    <string name="m1_chapter_desc">Complete the seven connected learning chapters, then take the formal 14-question assessment.</string>
+    <string name="m1_screens_count">10 connected story screens</string>
+    <string name="m1_ch8_header">Chapter 8</string>
+    <string name="m1_ch8_title">Formal Assessment</string>
+    <string name="m1_ch8_desc">14 questions • 4 options each</string>
+    <string name="m1_screen_label">Screen %1$d / %2$d</string>
+    <string name="m1_chapter_label">Chapter %1$s</string>
+    <string name="btn_submit">SUBMIT</string>
+    <string name="btn_check_answer">CHECK ANSWER</string>
+    <string name="btn_next_question">NEXT QUESTION</string>
+    <string name="btn_view_result">VIEW RESULT</string>
+    <string name="btn_practice_ar">PRACTICE AR</string>
+    <string name="btn_complete_chapter">COMPLETE CHAPTER</string>
+    <string name="feedback_title">Feedback</string>
+    <string name="feedback_correct">Correct Answer</string>
+    <string name="feedback_incorrect">Incorrect Answer</string>
+    <string name="tts_not_available">Speech is not available for this language on this device.</string>
+    <string name="assessment_question_label">Question %1$d / %2$d</string>
+    <string name="assessment_completed">Assessment complete</string>
+    <string name="assessment_your_score">Your score</string>
+    <string name="assessment_note">This result reflects this assessment attempt only. Story decisions are not mixed into the formal score.</string>
+</resources>
