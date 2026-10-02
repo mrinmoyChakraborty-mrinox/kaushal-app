@@ -1,0 +1,200 @@
+<resources>
+    <string name="app_name">कौशल</string>
+
+    <!-- Navigation -->
+    <string name="nav_home">होम</string>
+    <string name="nav_learn">सीखें</string>
+    <string name="nav_progress">प्रगति</string>
+    <string name="nav_profile">प्रोफ़ाइल</string>
+
+    <!-- Common Actions & Labels -->
+    <string name="action_back">पीछे</string>
+    <string name="action_close">बंद करें</string>
+    <string name="action_continue">आगे बढ़ें</string>
+    <string name="action_ok">ठीक है</string>
+    <string name="status_not_entered">दर्ज नहीं</string>
+    <string name="status_not_added">जोड़ा नहीं गया</string>
+    <string name="status_not_selected">चयनित नहीं</string>
+    <string name="status_verification_pending">सत्यापन लंबित</string>
+    <string name="learner">शिक्षार्थी</string>
+
+    <!-- Dashboard -->
+    <string name="dashboard_good_morning">सुप्रभात,</string>
+    <string name="dashboard_default_name">कौशल शिक्षार्थी</string>
+    <string name="dashboard_start_journey_title">अपनी सुरक्षा शिक्षण यात्रा शुरू करें</string>
+    <string name="dashboard_no_modules_assigned">अभी कोई प्रशिक्षण मॉड्यूल नहीं दिया गया है।</string>
+    <string name="dashboard_explore_training">प्रशिक्षण देखें</string>
+    <string name="dashboard_quick_actions">त्वरित कार्य</string>
+    <string name="dashboard_learning_modules">शिक्षण\nमॉड्यूल</string>
+    <string name="dashboard_my_progress">मेरी\nप्रगति</string>
+    <string name="dashboard_certificates">प्रमाणपत्र</string>
+    <string name="dashboard_field_book">फील्ड\nबुक</string>
+    <string name="dashboard_ar_training">एआर\nप्रशिक्षण</string>
+    <string name="dashboard_safety_passport">सुरक्षा\nपासपोर्ट</string>
+    <string name="dashboard_notifications">सूचनाएं</string>
+    <string name="dashboard_no_notifications">कोई नई सूचना नहीं है</string>
+    <string name="dashboard_continue_learning">सीखना जारी रखें</string>
+    <string name="dashboard_progress_overview">प्रगति अवलोकन</string>
+    <string name="dashboard_start_first_module">अपना पहला मॉड्यूल शुरू करें</string>
+    <string name="dashboard_no_completed_modules">अभी तक कोई पूर्ण मॉड्यूल नहीं</string>
+    <string name="dashboard_start_learning_desc">अपनी प्रगति पर नज़र रखने के लिए सीखना शुरू करें</string>
+
+    <!-- Custom Notification Dialog -->
+    <string name="notif_dialog_title">अपडेट रहें</string>
+    <string name="notif_dialog_desc">अपने असाइन किए गए प्रशिक्षण, नए मॉड्यूल, मूल्यांकन और प्रमाणपत्रों के बारे में महत्वपूर्ण अपडेट प्राप्त करने के लिए सूचनाएं चालू करें।</string>
+    <string name="notif_dialog_turn_on">सूचनाएं चालू करें</string>
+    <string name="notif_dialog_not_now">अभी नहीं</string>
+
+    <!-- Profile Photo Labels -->
+    <string name="profile_add_photo">फ़ोटो जोड़ें</string>
+    <string name="profile_change_photo">फ़ोटो बदलें</string>
+    <string name="profile_remove_photo">फ़ोटो हटाएं</string>
+    <string name="profile_photo_optional">वैकल्पिक</string>
+
+    <!-- Modules -->
+    <string name="module_fire_title">आग और विस्फोट प्रतिक्रिया</string>
+    <string name="module_fire_desc">अग्नि सुरक्षा, रोकथाम और आपातकालीन प्रतिक्रिया प्रक्रियाएं सीखें।</string>
+    <string name="module_gas_title">गैस रिसाव और सीमित स्थान</string>
+    <string name="module_gas_desc">खतरनाक गैस और सीमित वातावरण में सुरक्षित रहें।</string>
+    <string name="module_machinery_title">मशीनरी सुरक्षा</string>
+    <string name="module_machinery_desc">सुरक्षित संचालन और रखरखाव के तरीके सीखें।</string>
+    <string name="module_ppe_title">पीपीई और कार्यस्थल सुरक्षा</string>
+    <string name="module_ppe_desc">अपने काम के लिए सही सुरक्षात्मक उपकरणों का उपयोग करें।</string>
+    <string name="module_laws_title">खान कानून और श्रमिकों के अधिकार</string>
+    <string name="module_laws_desc">श्रमिक अधिकारों, नियमों और कानूनी सुरक्षा आवश्यकताओं को समझें।</string>
+
+    <!-- Learning Modules Screen -->
+    <string name="modules_title">शिक्षण मॉड्यूल</string>
+    <string name="modules_subtitle">आपकी सुरक्षा प्रशिक्षण मॉड्यूल</string>
+    <string name="modules_note">उपलब्ध सामग्री नीचे दी गई है। प्रगति केवल वास्तविक स्थिति होने पर दिखाई देती है।</string>
+    <string name="btn_start_learning">सीखना शुरू करें</string>
+    <string name="btn_ar_training">एआर प्रशिक्षण</string>
+    <string name="btn_take_assessment">मूल्यांकन दें</string>
+    <string name="btn_view_certificate">🔒  प्रमाणपत्र देखें</string>
+    <string name="module_certificate_locked">वास्तविक योग्यता पूरी होने तक प्रमाणपत्र बंद रहेगा।</string>
+
+    <!-- Profile Screen -->
+    <string name="profile_title">मेरी प्रोफाइल</string>
+    <string name="profile_your_name">आपका नाम</string>
+    <string name="profile_mobile_number">मोबाइल नंबर</string>
+    <string name="profile_worker_id">श्रमिक आईडी</string>
+    <string name="profile_status">स्थिति</string>
+    <string name="profile_sector">औद्योगिक क्षेत्र</string>
+    <string name="profile_subsector">उप-क्षेत्र</string>
+    <string name="profile_department">विभाग / संचालन</string>
+    <string name="profile_role">भूमिका</string>
+    <string name="profile_language">भाषा</string>
+    <string name="profile_notification_settings">सूचना सेटिंग्स</string>
+    <string name="profile_help_support">सहायता और समर्थन</string>
+    <string name="profile_logout">लॉग आउट</string>
+
+    <!-- Onboarding & Language -->
+    <string name="welcome_title">स्वागत है</string>
+    <string name="welcome_tagline">सीखें • अभ्यास करें • सुरक्षित रहें</string>
+    <string name="welcome_btn_get_started">शुरू करें</string>
+    <string name="welcome_btn_already_account">मेरा पहले से खाता है</string>
+    <string name="language_prompt">आप कौन सी भाषा बोलते हैं?</string>
+    <string name="benefits_prompt">आपके प्रशिक्षण के बाद आप यह सब कर सकेंगे!</string>
+
+    <string name="benefit_1_title">अपने कार्यस्थल में खतरों को पहचानें</string>
+    <string name="benefit_1_desc">खतरनाक होने से पहले संभावित जोखिमों की पहचान करें।</string>
+    <string name="benefit_2_title">आपात स्थिति में सही प्रतिक्रिया दें</string>
+    <string name="benefit_2_desc">आग, गैस रिसाव, उपकरण विफलताओं आदि के दौरान क्या करना है जानें।</string>
+    <string name="benefit_3_title">सही पीपीई और उपकरण चुनें</string>
+    <string name="benefit_3_desc">अपने कार्य वातावरण के लिए सही सुरक्षात्मक उपकरण चुनें और उनका उपयोग करें।</string>
+    <string name="benefit_4_title">एआर सिमुलेशन के साथ सुरक्षित अभ्यास करें</string>
+    <string name="benefit_4_desc">अपने फोन का उपयोग करके वास्तविक कार्यस्थल स्थितियों का अनुभव करें।</string>
+    <string name="benefit_5_title">सुरक्षा मूल्यांकन पास करें और प्रमाणित हों</string>
+    <string name="benefit_5_desc">मूल्यांकन पूरा करें, एक सत्यापित डिजिटल प्रमाणपत्र अर्जित करें, और अपना सुरक्षा पासपोर्ट बनाएं।</string>
+
+    <!-- Auth -->
+    <string name="auth_app_title">कौशल</string>
+    <string name="login_welcome">वापसी पर आपका स्वागत है!</string>
+    <string name="login_subtitle">अपने मोबाइल नंबर और सुरक्षित ओटीपी के साथ साइन इन करें।</string>
+    <string name="label_mobile">+91   मोबाइल नंबर</string>
+    <string name="label_full_name">पूरा नाम</string>
+    <string name="btn_send_otp">ओटीपी भेजें</string>
+    <string name="btn_verify_login">सत्यापित करें और लॉगिन करें</string>
+    <string name="btn_verify_continue">सत्यापित करें और जारी रखें</string>
+    <string name="btn_create_account">खाता बनाएं</string>
+    <string name="login_prompt_register">खाता नहीं है?</string>
+    <string name="btn_register">पंजीकरण करें</string>
+    <string name="register_title">अपना कौशल खाता बनाएं</string>
+    <string name="register_subtitle">शुरू करने के लिए अपना विवरण दर्ज करें।</string>
+    <string name="register_prompt_login">पहले से खाता है?  लॉगिन करें</string>
+    <string name="otp_title">ओटीपी दर्ज करें</string>
+    <string name="otp_subtitle">हमने 6-अंकों का ओटीपी भेजा है</string>
+    <string name="otp_resend">कोड नहीं मिला?  ओटीपी पुनः भेजें</string>
+    <string name="otp_testing_note">केवल यूआई परीक्षण • कोई वास्तविक एसएमएस नहीं भेजा जाता है।</string>
+    <string name="err_invalid_mobile">कृपया 10-अंकों का एक वैध मोबाइल नंबर दर्ज करें।</string>
+    <string name="err_enter_name">कृपया अपना पूरा नाम दर्ज करें।</string>
+    <string name="err_invalid_otp">कृपया सभी 6 ओटीपी अंक दर्ज करें।</string>
+
+    <!-- Training Profile -->
+    <string name="tp_title">अपनी प्रशिक्षण प्रोफ़ाइल सेट करें</string>
+    <string name="tp_subtitle">अपने सीखने के अनुभव को वैयक्तिकृत करने में हमारी मदद करें।</string>
+    <string name="tp_worker_id_label">श्रमिक आईडी (वैकल्पिक)</string>
+    <string name="tp_select_sector">औद्योगिक क्षेत्र चुनें</string>
+    <string name="tp_select_sector_first">पहले औद्योगिक क्षेत्र चुनें</string>
+    <string name="tp_select_subsector">उप-क्षेत्र चुनें</string>
+    <string name="tp_err_sector">कृपया एक औद्योगिक क्षेत्र चुनें।</string>
+    <string name="tp_err_subsector">कृपया एक उप-क्षेत्र चुनें।</string>
+    <string name="tp_dialog_sector_title">औद्योगिक क्षेत्र चुनें</string>
+    <string name="tp_dialog_subsector_title">उप-क्षेत्र चुनें</string>
+
+    <!-- Progress -->
+    <string name="progress_title">मेरी प्रगति</string>
+    <string name="progress_empty_title">अभी तक कोई मॉड्यूल पूरा नहीं हुआ</string>
+    <string name="progress_empty_desc">प्रगति केवल वास्तविक स्थानीय/बैकएंड स्थिति से आंकी जाती है।</string>
+
+    <!-- Certificates -->
+    <string name="cert_title">मेरे प्रमाणपत्र</string>
+    <string name="cert_empty_title">अभी तक कोई प्रमाणपत्र नहीं</string>
+    <string name="cert_empty_desc">अपने प्रमाणपत्र अर्जित करने के लिए मॉड्यूल मूल्यांकन पूरा करें।</string>
+
+    <!-- Field Book -->
+    <string name="fieldbook_title">फील्ड बुक</string>
+    <string name="fieldbook_subtitle">आपकी इंटरैक्टिव सुरक्षा पुस्तिका</string>
+    <string name="fieldbook_desc">दो स्तर: सुरक्षा ज्ञान पढ़ें, फिर इंटरैक्टिव अभ्यासों के माध्यम से अभ्यास करें।</string>
+    <string name="fieldbook_l1_title">स्तर 1 — पुस्तक</string>
+    <string name="fieldbook_l1_desc">चित्र • कहानी • सुरक्षा ज्ञान</string>
+    <string name="fieldbook_l2_title">स्तर 2 — इंटरएक्टिव</string>
+    <string name="fieldbook_l2_desc">टैप करें • खींचें • स्कैन करें • पहचानें • चुनें • व्यवस्थित करें • अनुकरण करें</string>
+    <string name="fieldbook_note">इस केवल-यूआई चरण में प्रशिक्षण संपत्तियां जुड़ी नहीं हैं।</string>
+
+    <!-- AR Training -->
+    <string name="ar_title">एआर प्रशिक्षण</string>
+    <string name="ar_soon_title">इस मॉड्यूल के लिए एआर प्रशिक्षण जल्द ही उपलब्ध होगा।</string>
+    <string name="ar_soon_desc">हम आपके फोन के साथ व्यावहारिक सीखने के लिए वास्तविक कार्यस्थल सिमुलेशन तैयार कर रहे हैं।</string>
+    <string name="btn_coming_soon">जल्द आ रहा है</string>
+
+    <!-- Assessment -->
+    <string name="assessment_title">मूल्यांकन</string>
+    <string name="assessment_soon_title">मूल्यांकन सामग्री जल्द ही आ रही है</string>
+    <string name="assessment_soon_desc">वर्तमान यूआई-परीक्षण चरण में कोई वास्तविक प्रश्न या स्कोर नहीं दिए गए हैं।</string>
+
+    <!-- Module 1 Story & Assessment Localized Strings -->
+    <string name="m1_header">मॉड्यूल 1</string>
+    <string name="m1_subtitle">कहानी-आधारित सुरक्षा शिक्षण</string>
+    <string name="m1_chapter_desc">सात जुड़े हुए शिक्षण अध्यायों को पूरा करें, फिर 14 प्रश्नों का औपचारिक मूल्यांकन दें।</string>
+    <string name="m1_screens_count">10 जुड़े हुए कहानी स्क्रीन</string>
+    <string name="m1_ch8_header">अध्याय 8</string>
+    <string name="m1_ch8_title">औपचारिक मूल्यांकन</string>
+    <string name="m1_ch8_desc">14 प्रश्न • प्रत्येक 4 विकल्प</string>
+    <string name="m1_screen_label">स्क्रीन %1$d / %2$d</string>
+    <string name="m1_chapter_label">अध्याय %1$s</string>
+    <string name="btn_submit">जमा करें</string>
+    <string name="btn_check_answer">उत्तर जांचें</string>
+    <string name="btn_next_question">अगला प्रश्न</string>
+    <string name="btn_view_result">परिणाम देखें</string>
+    <string name="btn_practice_ar">एआर अभ्यास करें</string>
+    <string name="btn_complete_chapter">अध्याय पूरा करें</string>
+    <string name="feedback_title">प्रतिक्रिया</string>
+    <string name="feedback_correct">सही उत्तर</string>
+    <string name="feedback_incorrect">गलत उत्तर</string>
+    <string name="tts_not_available">इस उपकरण पर इस भाषा के लिए भाषण उपलब्ध नहीं है।</string>
+    <string name="assessment_question_label">प्रश्न %1$d / %2$d</string>
+    <string name="assessment_completed">मूल्यांकन पूर्ण हुआ</string>
+    <string name="assessment_your_score">आपका अंक</string>
+    <string name="assessment_note">यह परिणाम केवल इस मूल्यांकन प्रयास को दर्शाता है। कहानी के निर्णयों को औपचारिक अंक में नहीं मिलाया जाता है।</string>
+</resources>
