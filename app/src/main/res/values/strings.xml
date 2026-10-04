@@ -197,4 +197,21 @@
     <string name="assessment_completed">Assessment complete</string>
     <string name="assessment_your_score">Your score</string>
     <string name="assessment_note">This result reflects this assessment attempt only. Story decisions are not mixed into the formal score.</string>
+    <string name="ar_back_to_decision">BACK TO DECISION</string>
+    <string name="ar_reset_step">RESET STEP</string>
+    <string name="ar_status_starting">Starting AR session…</string>
+    <string name="ar_status_loading">Loading visual step…</string>
+    <string name="ar_status_ready">AR ready — aim the camera at the floor and tap to place the scene.</string>
+    <string name="ar_status_error">AR error</string>
+    <string name="ar_status_exited">AR session closed</string>
+    <string name="ar_interaction">Interacted: %1$s</string>
+    <string name="ar_unavailable_title">AR scene unavailable for this scenario</string>
+    <string name="ar_unavailable_desc">This story scenario does not have a matching AR experience yet. You can continue with the decision on this screen.</string>
+    <string name="ar_camera_title">Camera permission required</string>
+    <string name="ar_camera_needed">KAUSHAL AR needs camera access to place training objects in your real workspace.</string>
+    <string name="ar_camera_denied">Camera permission was denied. Enable it in Settings to practice AR.</string>
+    <string name="ar_camera_grant">ALLOW CAMERA</string>
+    <string name="ar_continue_preview">CONTINUE IN 3D PREVIEW</string>
+    <string name="ar_mode_preview">3D PREVIEW</string>
+    <string name="ar_mode_ar">AR</string>
 </resources>
