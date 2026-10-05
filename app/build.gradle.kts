@@ -10,10 +10,15 @@ android {
 
     defaultConfig {
         applicationId = "com.kaushal.worker"
-        minSdk = 26
+        // Raised from 26 to 29: the Unity 6000.6 AR runtime on arm64 requires API 29.
+        minSdk = 29
         targetSdk = 35
         versionCode = 1
         versionName = "0.1.0"
+
+        ndk {
+            abiFilters += listOf("arm64-v8a")
+        }
     }
 
     compileOptions {
@@ -33,6 +38,21 @@ android {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
+        jniLibs {
+            useLegacyPackaging = true
+        }
+    }
+
+    androidResources {
+        // Unity player data must stay uncompressed inside the APK.
+        noCompress += listOf(
+            ".unity3d",
+            ".ress",
+            ".resource",
+            ".obb",
+            ".bundle",
+            ".unityexp"
+        )
     }
 }
 
@@ -55,6 +75,9 @@ dependencies {
     implementation("androidx.compose.material3:material3")
     implementation("androidx.compose.material:material-icons-extended")
     implementation("io.coil-kt:coil-compose:2.7.0")
+
+    // Unity AR runtime exported as a Gradle library.
+    implementation(project(":unityLibrary"))
 
     debugImplementation("androidx.compose.ui:ui-tooling")
 }

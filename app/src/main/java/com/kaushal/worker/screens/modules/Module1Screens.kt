@@ -225,7 +225,7 @@ fun Module1StoryPlayerScreen(
     initialScreenId: String? = null,
     onCheckpoint: (chapterId: String, screenId: String) -> Unit = { _, _ -> },
     onBack: () -> Unit,
-    onPracticeAr: (String) -> Unit,
+    onPracticeAr: (scenarioId: String, screenId: String) -> Unit,
     onChapterComplete: () -> Unit,
     onDecisionAnswered: (screenId: String, selectedOption: Int, isCorrect: Boolean) -> Unit,
     onScreenCompleted: (screenId: String) -> Unit
@@ -360,7 +360,7 @@ fun Module1StoryPlayerScreen(
                     Button(
                         onClick = {
                             ttsManager.stop()
-                            onPracticeAr(screen.arScenarioId ?: "module1")
+                            onPracticeAr(screen.arScenarioId ?: "module1", screen.id)
                         },
                         modifier = Modifier.fillMaxWidth().height(54.dp),
                         shape = RoundedCornerShape(16.dp),

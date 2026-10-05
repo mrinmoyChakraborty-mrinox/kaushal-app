@@ -2,6 +2,16 @@
 .gradle/
 **/build/
 
+# KAUSHAL — Unity integration
+# libs/unityLibrary (and libs/shared) MUST stay tracked: the combined
+# APK cannot build without them. Only generated outputs under */build/
+# stay ignored via the rule above (they hold >500 MB il2cpp artifacts
+# and the ~200 MB APK, which GitHub rejects). Do NOT force-add ignored
+# build outputs.
+# libs/unityLibrary/symbols/ holds build byproducts (debug-symbol copies
+# recreated on every build) — not needed to build, view, or rebuild.
+libs/unityLibrary/symbols/
+
 # Local configuration
 local.properties
 

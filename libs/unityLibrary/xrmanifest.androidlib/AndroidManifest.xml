@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Unity XR manifest library (integrated copy). The UnityPlayerActivity
+  declaration from the raw export is removed: the KAUSHAL host app embeds the
+  UnityPlayer inside its own MainActivity and Unity must not own navigation.
+  The namespace is declared in build.gradle (AGP 8 requires it there).
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+  <application />
+</manifest>

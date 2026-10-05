@@ -177,7 +177,9 @@ fun AppNavigation(appState: TemporaryAppViewModel) {
                         "Profile" -> navController.navigate(Routes.Profile)
                         "Language" -> navController.navigate(Routes.Language)
                         "Field Book" -> navController.navigate(Routes.FieldBook)
-                        "AR Training" -> navController.navigate(Routes.ArTraining.replace("{moduleId}", "fire"))
+                        "AR Training" -> navController.navigate(
+                            Routes.arTraining(moduleId = "fire")
+                        )
                         "Certificates" -> navController.navigate(Routes.Certificates)
                         "Safety Passport" -> navController.navigate(Routes.Certificates)
                     }
@@ -258,7 +260,16 @@ fun AppNavigation(appState: TemporaryAppViewModel) {
                 initialScreenId = session.module1Progress.checkpointScreenId.takeIf { session.module1Progress.checkpointChapterId == chapterId },
                 onCheckpoint = appState::setModule1Checkpoint,
                 onBack = { navController.popBackStack() },
-                onPracticeAr = { id -> navController.navigate(Routes.ArTraining.replace("{moduleId}", id)) },
+                onPracticeAr = { scenarioId, storyScreenId ->
+                    navController.navigate(
+                        Routes.arTraining(
+                            moduleId = "fire",
+                            scenarioId = scenarioId,
+                            chapterId = chapterId,
+                            screenId = storyScreenId
+                        )
+                    )
+                },
                 onChapterComplete = {
                     appState.completeModule1Chapter(chapterId)
                     navController.popBackStack()
@@ -302,7 +313,6 @@ fun AppNavigation(appState: TemporaryAppViewModel) {
                 }
             }
         }
-
         composable(
             Routes.Assessment,
             arguments = listOf(navArgument("moduleId") { type = NavType.StringType })
