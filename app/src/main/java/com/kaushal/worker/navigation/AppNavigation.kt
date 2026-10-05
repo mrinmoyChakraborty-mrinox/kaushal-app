@@ -3,6 +3,15 @@ package com.kaushal.worker.navigation
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.material3.Button
+import androidx.compose.material3.Text
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -25,6 +34,7 @@ import com.kaushal.worker.screens.ar.ArTrainingScreen
 import com.kaushal.worker.screens.assessment.AssessmentScreen
 import com.kaushal.worker.screens.modules.Module1ChapterListScreen
 import com.kaushal.worker.screens.modules.Module1StoryPlayerScreen
+import com.kaushal.worker.screens.modules.QuickSummaryScreen
 import com.kaushal.worker.screens.certificates.CertificatesScreen
 import com.kaushal.worker.screens.progress.ProgressScreen
 import com.kaushal.worker.screens.profile.ProfileScreen
@@ -142,6 +152,17 @@ fun AppNavigation(appState: TemporaryAppViewModel) {
         composable(Routes.Dashboard) {
             DashboardScreen(
                 profile = session.profile,
+                completedScreens = session.module1Progress.completedScreens.size,
+                checkpointChapterId = session.module1Progress.checkpointChapterId,
+                checkpointScreenId = session.module1Progress.checkpointScreenId,
+                onContinueLearning = {
+                    val chapter = session.module1Progress.checkpointChapterId
+                    if (chapter != null) {
+                        navController.navigate(Routes.Module1Story.replace("{chapterId}", chapter))
+                    } else {
+                        navController.navigate(Routes.Module1Chapters)
+                    }
+                },
                 onNavigate = { target ->
                     when (target) {
                         "Home" -> {
@@ -158,6 +179,7 @@ fun AppNavigation(appState: TemporaryAppViewModel) {
                         "Field Book" -> navController.navigate(Routes.FieldBook)
                         "AR Training" -> navController.navigate(Routes.ArTraining.replace("{moduleId}", "fire"))
                         "Certificates" -> navController.navigate(Routes.Certificates)
+                        "Safety Passport" -> navController.navigate(Routes.Certificates)
                     }
                 }
             )
@@ -190,11 +212,17 @@ fun AppNavigation(appState: TemporaryAppViewModel) {
         ) { entry ->
             ModuleDetailScreen(
                 moduleId = entry.arguments?.getString("moduleId").orEmpty(),
+                learningCompleted = session.module1Progress.learningCompleted,
+                arTrainingCompleted = session.module1Progress.arTrainingCompleted,
+                quickSummaryCompleted = session.module1Progress.quickSummaryCompleted,
                 onBack = { navController.popBackStack() },
                 onAr = { id -> navController.navigate(Routes.ArTraining.replace("{moduleId}", id)) },
+                onQuickSummary = { id -> if (id == "fire") navController.navigate(Routes.QuickSummary) },
                 onAssessment = { id ->
-                    if (id == "fire") appState.startModule1Assessment()
-                    navController.navigate(Routes.Assessment.replace("{moduleId}", id))
+                    if (id == "fire" && session.module1Progress.assessmentUnlocked) {
+                        appState.startModule1Assessment()
+                        navController.navigate(Routes.Assessment.replace("{moduleId}", id))
+                    }
                 },
                 onStartModule = { id ->
                     if (id == "fire") navController.navigate(Routes.Module1Chapters)
@@ -209,9 +237,12 @@ fun AppNavigation(appState: TemporaryAppViewModel) {
                 onBack = { navController.popBackStack() },
                 onChapter = { chapterId -> navController.navigate(Routes.Module1Story.replace("{chapterId}", chapterId)) },
                 completedChapters = session.module1Progress.completedChapters,
+                assessmentUnlocked = session.module1Progress.assessmentUnlocked,
                 onAssessment = {
-                    appState.startModule1Assessment()
-                    navController.navigate(Routes.Assessment.replace("{moduleId}", "fire"))
+                    if (session.module1Progress.assessmentUnlocked) {
+                        appState.startModule1Assessment()
+                        navController.navigate(Routes.Assessment.replace("{moduleId}", "fire"))
+                    }
                 }
             )
         }
@@ -224,6 +255,8 @@ fun AppNavigation(appState: TemporaryAppViewModel) {
             Module1StoryPlayerScreen(
                 chapterId = chapterId,
                 languageCode = session.profile.language,
+                initialScreenId = session.module1Progress.checkpointScreenId.takeIf { session.module1Progress.checkpointChapterId == chapterId },
+                onCheckpoint = appState::setModule1Checkpoint,
                 onBack = { navController.popBackStack() },
                 onPracticeAr = { id -> navController.navigate(Routes.ArTraining.replace("{moduleId}", id)) },
                 onChapterComplete = {
@@ -237,6 +270,14 @@ fun AppNavigation(appState: TemporaryAppViewModel) {
             )
         }
 
+        composable(Routes.QuickSummary) {
+            QuickSummaryScreen(
+                completed = session.module1Progress.quickSummaryCompleted,
+                onBack = { navController.popBackStack() },
+                onCompleted = appState::completeQuickSummary
+            )
+        }
+
         composable(Routes.FieldBook) {
             FieldBookScreen(onBack = { navController.popBackStack() })
         }
@@ -245,7 +286,21 @@ fun AppNavigation(appState: TemporaryAppViewModel) {
             Routes.ArTraining,
             arguments = listOf(navArgument("moduleId") { type = NavType.StringType })
         ) {
-            ArTrainingScreen(onBack = { navController.popBackStack() })
+            Box(Modifier.fillMaxSize()) {
+                ArTrainingScreen(onBack = { navController.popBackStack() })
+                Button(
+                    onClick = {
+                        appState.completeArTraining()
+                        navController.popBackStack()
+                    },
+                    modifier = Modifier
+                        .align(Alignment.BottomCenter)
+                        .fillMaxWidth()
+                        .padding(18.dp)
+                ) {
+                    Text("COMPLETE AR TRAINING")
+                }
+            }
         }
 
         composable(

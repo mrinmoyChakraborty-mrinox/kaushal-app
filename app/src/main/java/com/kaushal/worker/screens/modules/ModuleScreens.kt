@@ -65,8 +65,12 @@ fun LearningModulesScreen(
 @Composable
 fun ModuleDetailScreen(
     moduleId: String,
+    learningCompleted: Boolean = false,
+    arTrainingCompleted: Boolean = false,
+    quickSummaryCompleted: Boolean = false,
     onBack: () -> Unit,
     onAr: (String) -> Unit,
+    onQuickSummary: (String) -> Unit = {},
     onAssessment: (String) -> Unit,
     onStartModule: (String) -> Unit
 ) {
@@ -90,6 +94,8 @@ fun ModuleDetailScreen(
             KaushalButton(stringResource(R.string.btn_start_learning), onClick = { onStartModule(module.id) })
             Spacer(Modifier.height(12.dp))
             OutlinedKaushalButton(stringResource(R.string.btn_ar_training), { onAr(module.id) })
+            Spacer(Modifier.height(12.dp))
+            OutlinedKaushalButton("QUICK SUMMARY", { onQuickSummary(module.id) })
             Spacer(Modifier.height(12.dp))
             OutlinedKaushalButton(stringResource(R.string.btn_take_assessment), { onAssessment(module.id) })
             Spacer(Modifier.height(12.dp))

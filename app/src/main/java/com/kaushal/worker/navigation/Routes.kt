@@ -14,6 +14,7 @@ object Routes {
     const val ModuleDetail = "module_detail/{moduleId}"
     const val Module1Chapters = "module1_chapters"
     const val Module1Story = "module1_story/{chapterId}"
+    const val QuickSummary = "quick_summary"
     const val FieldBook = "field_book"
     const val ArTraining = "ar_training/{moduleId}"
     const val Assessment = "assessment/{moduleId}"
