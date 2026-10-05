@@ -197,4 +197,23 @@
     <string name="assessment_completed">मूल्यांकन पूर्ण हुआ</string>
     <string name="assessment_your_score">आपका अंक</string>
     <string name="assessment_note">यह परिणाम केवल इस मूल्यांकन प्रयास को दर्शाता है। कहानी के निर्णयों को औपचारिक अंक में नहीं मिलाया जाता है।</string>
+
+    <!-- AR host states -->
+    <string name="ar_back_to_decision">निर्णय पर वापस जाएं</string>
+    <string name="ar_reset_step">चरण रीसेट करें</string>
+    <string name="ar_status_starting">एआर सत्र शुरू हो रहा है…</string>
+    <string name="ar_status_loading">दृश्य चरण लोड हो रहा है…</string>
+    <string name="ar_status_ready">एआर तैयार है — कैमरे को फर्श की ओर घुमाएं और दृश्य रखने के लिए टैप करें।</string>
+    <string name="ar_status_error">एआर त्रुटि</string>
+    <string name="ar_status_exited">एआर सत्र बंद हो गया</string>
+    <string name="ar_interaction">इंटरैक्ट किया: %1$s</string>
+    <string name="ar_unavailable_title">इस परिदृश्य के लिए एआर दृश्य उपलब्ध नहीं है</string>
+    <string name="ar_unavailable_desc">इस कहानी परिदृश्य के लिए अभी कोई मिलता-जुलता एआर अनुभव नहीं है। आप इस स्क्रीन पर निर्णय जारी रख सकते हैं।</string>
+    <string name="ar_camera_title">कैमरा अनुमति आवश्यक है</string>
+    <string name="ar_camera_needed">कौशल एआर को आपके वास्तविक कार्यक्षेत्र में प्रशिक्षण वस्तुएं रखने के लिए कैमरे तक पहुंच चाहिए।</string>
+    <string name="ar_camera_denied">कैमरा अनुमति अस्वीकार कर दी गई। एआर का अभ्यास करने के लिए इसे सेटिंग्स में सक्षम करें।</string>
+    <string name="ar_camera_grant">कैमरे की अनुमति दें</string>
+    <string name="ar_continue_preview">3डी प्रीव्यू में जारी रखें</string>
+    <string name="ar_mode_preview">3डी प्रीव्यू</string>
+    <string name="ar_mode_ar">एआर</string>
 </resources>

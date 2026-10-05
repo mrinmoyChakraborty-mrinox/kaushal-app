@@ -156,7 +156,9 @@ fun AppNavigation(appState: TemporaryAppViewModel) {
                         "Profile" -> navController.navigate(Routes.Profile)
                         "Language" -> navController.navigate(Routes.Language)
                         "Field Book" -> navController.navigate(Routes.FieldBook)
-                        "AR Training" -> navController.navigate(Routes.ArTraining.replace("{moduleId}", "fire"))
+                        "AR Training" -> navController.navigate(
+                            Routes.arTraining(moduleId = "fire")
+                        )
                         "Certificates" -> navController.navigate(Routes.Certificates)
                     }
                 }
@@ -191,7 +193,7 @@ fun AppNavigation(appState: TemporaryAppViewModel) {
             ModuleDetailScreen(
                 moduleId = entry.arguments?.getString("moduleId").orEmpty(),
                 onBack = { navController.popBackStack() },
-                onAr = { id -> navController.navigate(Routes.ArTraining.replace("{moduleId}", id)) },
+                onAr = { id -> navController.navigate(Routes.arTraining(moduleId = id)) },
                 onAssessment = { id ->
                     if (id == "fire") appState.startModule1Assessment()
                     navController.navigate(Routes.Assessment.replace("{moduleId}", id))
@@ -225,7 +227,16 @@ fun AppNavigation(appState: TemporaryAppViewModel) {
                 chapterId = chapterId,
                 languageCode = session.profile.language,
                 onBack = { navController.popBackStack() },
-                onPracticeAr = { id -> navController.navigate(Routes.ArTraining.replace("{moduleId}", id)) },
+                onPracticeAr = { scenarioId, storyScreenId ->
+                    navController.navigate(
+                        Routes.arTraining(
+                            moduleId = "fire",
+                            scenarioId = scenarioId,
+                            chapterId = chapterId,
+                            screenId = storyScreenId
+                        )
+                    )
+                },
                 onChapterComplete = {
                     appState.completeModule1Chapter(chapterId)
                     navController.popBackStack()
@@ -243,11 +254,31 @@ fun AppNavigation(appState: TemporaryAppViewModel) {
 
         composable(
             Routes.ArTraining,
-            arguments = listOf(navArgument("moduleId") { type = NavType.StringType })
-        ) {
-            ArTrainingScreen(onBack = { navController.popBackStack() })
+            arguments = listOf(
+                navArgument("moduleId") { type = NavType.StringType },
+                navArgument("scenarioId") {
+                    type = NavType.StringType
+                    defaultValue = ""
+                },
+                navArgument("chapterId") {
+                    type = NavType.StringType
+                    defaultValue = ""
+                },
+                navArgument("screenId") {
+                    type = NavType.StringType
+                    defaultValue = ""
+                }
+            )
+        ) { entry ->
+            ArTrainingScreen(
+                moduleId = entry.arguments?.getString("moduleId").orEmpty(),
+                scenarioId = entry.arguments?.getString("scenarioId").orEmpty(),
+                chapterId = entry.arguments?.getString("chapterId").orEmpty(),
+                screenId = entry.arguments?.getString("screenId").orEmpty(),
+                languageCode = session.profile.language,
+                onBack = { navController.popBackStack() }
+            )
         }
-
         composable(
             Routes.Assessment,
             arguments = listOf(navArgument("moduleId") { type = NavType.StringType })

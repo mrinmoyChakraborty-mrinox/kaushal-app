@@ -15,9 +15,26 @@ object Routes {
     const val Module1Chapters = "module1_chapters"
     const val Module1Story = "module1_story/{chapterId}"
     const val FieldBook = "field_book"
-    const val ArTraining = "ar_training/{moduleId}"
+
+    // AR route carries the real context: moduleId (path) plus scenarioId,
+    // chapterId and screenId (query parameters with defaults so the Dashboard
+    // and Module Detail entries keep working).
+    const val ArTraining = "ar_training/{moduleId}?scenarioId={scenarioId}&chapterId={chapterId}&screenId={screenId}"
     const val Assessment = "assessment/{moduleId}"
     const val Certificates = "certificates"
     const val Progress = "progress"
     const val Profile = "profile"
+
+    /**
+     * Builds an AR route that preserves the full Kotlin learning context.
+     * Dashboard and Module Detail entries call it with only a moduleId;
+     * decision screens call it with the full context.
+     */
+    fun arTraining(
+        moduleId: String,
+        scenarioId: String = "",
+        chapterId: String = "",
+        screenId: String = ""
+    ): String = "ar_training/$moduleId" +
+        "?scenarioId=$scenarioId&chapterId=$chapterId&screenId=$screenId"
 }
