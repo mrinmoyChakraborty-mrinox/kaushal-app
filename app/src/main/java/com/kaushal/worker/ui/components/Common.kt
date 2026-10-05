@@ -225,11 +225,19 @@ fun BottomNavigationBar(current: String, onNavigate: (String) -> Unit) {
 
     NavigationBar(containerColor = Color.White) {
         items.forEach { item ->
+            val selected = current == item.key
             NavigationBarItem(
-                selected = current == item.key,
+                selected = selected,
                 onClick = { onNavigate(item.key) },
                 icon = { Icon(item.icon, contentDescription = stringResource(item.labelResId)) },
-                label = { Text(stringResource(item.labelResId)) }
+                label = { Text(stringResource(item.labelResId), fontWeight = if (selected) FontWeight.Bold else FontWeight.Normal) },
+                colors = NavigationBarItemDefaults.colors(
+                    selectedIconColor = KaushalOrange,
+                    selectedTextColor = KaushalOrange,
+                    indicatorColor = Color(0xFFFFF0E5),
+                    unselectedIconColor = Color(0xFF718096),
+                    unselectedTextColor = Color(0xFF718096)
+                )
             )
         }
     }

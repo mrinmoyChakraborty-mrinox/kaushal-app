@@ -123,6 +123,7 @@ fun Module1ChapterListScreen(
     onBack: () -> Unit,
     onChapter: (String) -> Unit,
     completedChapters: Set<String>,
+    assessmentUnlocked: Boolean = false,
     onAssessment: () -> Unit
 ) {
     val chapters = remember(languageCode) { getLocalizedModule1Chapters(languageCode) }
@@ -197,7 +198,21 @@ fun Module1ChapterListScreen(
                 Text(stringResource(R.string.m1_ch8_title), style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold)
                 Text(stringResource(R.string.m1_ch8_desc), color = KaushalMuted)
                 Spacer(Modifier.height(10.dp))
-                KaushalButton(stringResource(R.string.btn_take_assessment), onAssessment)
+                if (assessmentUnlocked) {
+                    KaushalButton(stringResource(R.string.btn_take_assessment), onAssessment)
+                } else {
+                    OutlinedButton(onClick = {}, enabled = false, modifier = Modifier.fillMaxWidth()) {
+                        Icon(Icons.Default.Lock, contentDescription = null)
+                        Spacer(Modifier.width(8.dp))
+                        Text(stringResource(R.string.btn_take_assessment))
+                    }
+                    Text(
+                        "Complete at least 2 of the 3 learning activities above to unlock the assessment.",
+                        color = KaushalMuted,
+                        style = MaterialTheme.typography.bodySmall,
+                        modifier = Modifier.padding(top = 6.dp)
+                    )
+                }
             }
         }
     }
@@ -207,6 +222,8 @@ fun Module1ChapterListScreen(
 fun Module1StoryPlayerScreen(
     chapterId: String,
     languageCode: String = "en",
+    initialScreenId: String? = null,
+    onCheckpoint: (chapterId: String, screenId: String) -> Unit = { _, _ -> },
     onBack: () -> Unit,
     onPracticeAr: (scenarioId: String, screenId: String) -> Unit,
     onChapterComplete: () -> Unit,
@@ -215,7 +232,9 @@ fun Module1StoryPlayerScreen(
 ) {
     val localizedChapters = remember(languageCode) { getLocalizedModule1Chapters(languageCode) }
     val chapter = localizedChapters.firstOrNull { it.id == chapterId } ?: localizedChapters.first()
-    var screenIndex by rememberSaveable(chapterId) { mutableIntStateOf(0) }
+    var screenIndex by rememberSaveable(chapterId, initialScreenId) {
+        mutableIntStateOf(chapter.screens.indexOfFirst { it.id == initialScreenId }.takeIf { it >= 0 } ?: 0)
+    }
     var selectedOption by rememberSaveable(chapterId, screenIndex) { mutableStateOf<Int?>(null) }
     var feedbackVisible by rememberSaveable(chapterId, screenIndex) { mutableStateOf(false) }
     val screen = chapter.screens[screenIndex]
@@ -228,6 +247,7 @@ fun Module1StoryPlayerScreen(
     LaunchedEffect(screenIndex) {
         scrollState.scrollTo(0)
         ttsManager.stop()
+        onCheckpoint(chapter.id, chapter.screens[screenIndex].id)
     }
 
     LaunchedEffect(feedbackVisible) {
@@ -255,6 +275,7 @@ fun Module1StoryPlayerScreen(
         if (isLast) {
             onChapterComplete()
         } else {
+            onCheckpoint(chapter.id, chapter.screens[screenIndex + 1].id)
             screenIndex += 1
             selectedOption = null
             feedbackVisible = false
