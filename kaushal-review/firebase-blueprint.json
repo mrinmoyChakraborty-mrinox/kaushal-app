@@ -1,0 +1,203 @@
+{
+  "entities": {
+    "Worker": {
+      "title": "Worker",
+      "description": "Industrial worker enrolled in Kaushal safety training",
+      "type": "object",
+      "properties": {
+        "workerId": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "language": { "type": "string", "enum": ["Hindi", "Santali"] },
+        "sector": { "type": "string", "enum": ["Mining", "Steel", "Mica"] },
+        "workArea": { "type": "string", "enum": ["Underground", "Surface"] },
+        "siteId": { "type": "string" },
+        "status": { "type": "string", "enum": ["Completed", "In Progress", "Pending"] },
+        "completionPercent": { "type": "number" },
+        "verificationStatus": { "type": "string", "enum": ["Verified", "Pending"] },
+        "avatarUrl": { "type": "string" },
+        "modules": { "type": "array" },
+        "lastSyncedAt": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["workerId", "name", "language", "sector", "workArea", "status"]
+    },
+    "Module": {
+      "title": "Module",
+      "description": "Kaushal safety training module and assessment analytics",
+      "type": "object",
+      "properties": {
+        "moduleId": { "type": "string" },
+        "name": { "type": "string" },
+        "shortName": { "type": "string" },
+        "arEnabled": { "type": "boolean" },
+        "currentVersion": { "type": "string" },
+        "avgScore": { "type": "number" },
+        "passRate": { "type": "number" },
+        "completedCount": { "type": "number" },
+        "failedAttempts": { "type": "number" },
+        "mostMissedQuestion": { "type": "string" },
+        "workersNeedingRefresher": { "type": "number" },
+        "chapters": { "type": "array" }
+      },
+      "required": ["moduleId", "name", "currentVersion", "avgScore", "passRate"]
+    },
+    "ContentChangeRequest": {
+      "title": "ContentChangeRequest",
+      "description": "Peer-reviewed content modification request",
+      "type": "object",
+      "properties": {
+        "requestId": { "type": "string" },
+        "moduleId": { "type": "string" },
+        "moduleName": { "type": "string" },
+        "chapterId": { "type": "string" },
+        "chapterName": { "type": "string" },
+        "screenId": { "type": "string" },
+        "screenName": { "type": "string" },
+        "requestedBy": { "type": "string" },
+        "requestedByName": { "type": "string" },
+        "siteId": { "type": "string" },
+        "industryScope": { "type": "string" },
+        "description": { "type": "string" },
+        "currentContent": { "type": "string" },
+        "proposedContent": { "type": "string" },
+        "aiDraftUsed": { "type": "boolean" },
+        "adminReviewed": { "type": "boolean" },
+        "approvalRequired": { "type": "boolean" },
+        "approvalGroup": { "type": "string" },
+        "requiredApprovals": { "type": "string" },
+        "approvals": { "type": "array" },
+        "status": {
+          "type": "string",
+          "enum": ["DRAFT", "PENDING_REVIEW", "PARTIALLY_APPROVED", "REJECTED", "APPROVED", "PUBLISHED"]
+        },
+        "baseVersion": { "type": "string" },
+        "proposedVersion": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["requestId", "moduleId", "moduleName", "description", "status", "proposedVersion"]
+    },
+    "ContentVersion": {
+      "title": "ContentVersion",
+      "description": "Immutable historical or active version of learning screen content",
+      "type": "object",
+      "properties": {
+        "versionId": { "type": "string" },
+        "moduleId": { "type": "string" },
+        "moduleName": { "type": "string" },
+        "chapterId": { "type": "string" },
+        "screenId": { "type": "string" },
+        "versionNumber": { "type": "string" },
+        "content": { "type": "string" },
+        "authorName": { "type": "string" },
+        "requestId": { "type": "string" },
+        "publishedAt": { "type": "string" },
+        "isCurrent": { "type": "boolean" }
+      },
+      "required": ["versionId", "moduleId", "versionNumber", "content"]
+    },
+    "Certificate": {
+      "title": "Certificate",
+      "description": "QR-verifiable worker completion certificate",
+      "type": "object",
+      "properties": {
+        "certificateId": { "type": "string" },
+        "workerId": { "type": "string" },
+        "workerName": { "type": "string" },
+        "siteId": { "type": "string" },
+        "sector": { "type": "string" },
+        "courseName": { "type": "string" },
+        "score": { "type": "number" },
+        "issuedAt": { "type": "string" },
+        "qrPayload": { "type": "string" },
+        "status": { "type": "string", "enum": ["VERIFIED", "NOT_VERIFIED"] }
+      },
+      "required": ["certificateId", "workerId", "workerName", "status"]
+    },
+    "AuditLog": {
+      "title": "AuditLog",
+      "description": "Content and administrative governance audit record (excludes certificate verification)",
+      "type": "object",
+      "properties": {
+        "logId": { "type": "string" },
+        "actorId": { "type": "string" },
+        "actorName": { "type": "string" },
+        "action": { "type": "string" },
+        "moduleId": { "type": "string" },
+        "moduleName": { "type": "string" },
+        "version": { "type": "string" },
+        "timestamp": { "type": "string" },
+        "createdAtMs": { "type": "number" },
+        "targetId": { "type": "string" }
+      },
+      "required": ["logId", "actorName", "action", "moduleName", "version", "timestamp"]
+    },
+    "Notification": {
+      "title": "Notification",
+      "description": "System, training, and content edit notifications (excludes certificate verification)",
+      "type": "object",
+      "properties": {
+        "notificationId": { "type": "string" },
+        "category": {
+          "type": "string",
+          "enum": ["TRAINING_UPDATE", "CONTENT_EDIT_REQUEST", "SYSTEM_NOTIFICATION"]
+        },
+        "title": { "type": "string" },
+        "message": { "type": "string" },
+        "timestamp": { "type": "string" },
+        "createdAtMs": { "type": "number" },
+        "read": { "type": "boolean" }
+      },
+      "required": ["notificationId", "category", "title", "message"]
+    },
+    "AdminSetting": {
+      "title": "AdminSetting",
+      "description": "Admin preferences, notification toggles, and site-wide KPI counters",
+      "type": "object",
+      "properties": {
+        "settingId": { "type": "string" },
+        "siteId": { "type": "string" },
+        "sector": { "type": "string" },
+        "trainingUpdates": { "type": "boolean" },
+        "contentEditRequests": { "type": "boolean" },
+        "systemNotifications": { "type": "boolean" },
+        "requirePeerApprovalDefault": { "type": "boolean" }
+      },
+      "required": ["settingId", "trainingUpdates", "contentEditRequests", "systemNotifications"]
+    }
+  },
+  "firestore": {
+    "/workers/{workerId}": {
+      "schema": { "$ref": "#/entities/Worker" },
+      "description": "Industrial worker training and progress records"
+    },
+    "/modules/{moduleId}": {
+      "schema": { "$ref": "#/entities/Module" },
+      "description": "Five Kaushal training modules and assessment performance"
+    },
+    "/contentChangeRequests/{requestId}": {
+      "schema": { "$ref": "#/entities/ContentChangeRequest" },
+      "description": "Peer-reviewed safety content change requests"
+    },
+    "/contentVersions/{versionId}": {
+      "schema": { "$ref": "#/entities/ContentVersion" },
+      "description": "Immutable content versions"
+    },
+    "/certificates/{certificateId}": {
+      "schema": { "$ref": "#/entities/Certificate" },
+      "description": "Issued worker safety certificates"
+    },
+    "/auditLogs/{logId}": {
+      "schema": { "$ref": "#/entities/AuditLog" },
+      "description": "Content governance audit logs"
+    },
+    "/notifications/{notificationId}": {
+      "schema": { "$ref": "#/entities/Notification" },
+      "description": "Training, content edit, and system notifications"
+    },
+    "/settings/{settingId}": {
+      "schema": { "$ref": "#/entities/AdminSetting" },
+      "description": "Admin settings and platform analytical aggregates"
+    }
+  }
+}
