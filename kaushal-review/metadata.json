@@ -1,0 +1,6 @@
+{
+  "name": "Kaushal Admin Dashboard",
+  "description": "Admin Web Dashboard for Kaushal — Mobile AR-Based Vocational Safety Training & Certification Platform for mining, steel, and mica industrial workers.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

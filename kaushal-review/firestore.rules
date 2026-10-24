@@ -1,0 +1,70 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isValidString(val, minLen, maxLen) {
+      return val is string && val.size() >= minLen && val.size() <= maxLen;
+    }
+
+    match /workers/{workerId} {
+      allow read: if true;
+      allow create, update: if request.resource.data.keys().hasAll(['workerId', 'name', 'language', 'sector', 'workArea', 'status'])
+        && isValidString(request.resource.data.workerId, 1, 50)
+        && isValidString(request.resource.data.name, 1, 120)
+        && request.resource.data.language in ['Hindi', 'Santali']
+        && request.resource.data.sector in ['Mining', 'Steel', 'Mica']
+        && request.resource.data.workArea in ['Underground', 'Surface']
+        && request.resource.data.status in ['Completed', 'In Progress', 'Pending'];
+      allow delete: if true;
+    }
+
+    match /modules/{moduleId} {
+      allow read: if true;
+      allow create, update: if request.resource.data.keys().hasAll(['moduleId', 'name', 'currentVersion', 'avgScore', 'passRate'])
+        && isValidString(request.resource.data.moduleId, 1, 50)
+        && isValidString(request.resource.data.name, 1, 150);
+    }
+
+    match /contentChangeRequests/{requestId} {
+      allow read: if true;
+      allow create, update: if request.resource.data.keys().hasAll(['requestId', 'moduleId', 'moduleName', 'description', 'status', 'proposedVersion'])
+        && isValidString(request.resource.data.requestId, 1, 60)
+        && isValidString(request.resource.data.description, 1, 2000)
+        && request.resource.data.status in ['DRAFT', 'PENDING_REVIEW', 'PARTIALLY_APPROVED', 'REJECTED', 'APPROVED', 'PUBLISHED'];
+    }
+
+    match /contentVersions/{versionId} {
+      allow read: if true;
+      allow create, update: if request.resource.data.keys().hasAll(['versionId', 'moduleId', 'versionNumber', 'content'])
+        && isValidString(request.resource.data.versionId, 1, 80)
+        && isValidString(request.resource.data.content, 1, 5000);
+    }
+
+    match /certificates/{certificateId} {
+      allow read: if true;
+      allow create, update: if request.resource.data.keys().hasAll(['certificateId', 'workerId', 'workerName', 'status'])
+        && isValidString(request.resource.data.certificateId, 1, 80)
+        && request.resource.data.status in ['VERIFIED', 'NOT_VERIFIED'];
+    }
+
+    match /auditLogs/{logId} {
+      allow read: if true;
+      allow create, update: if request.resource.data.keys().hasAll(['logId', 'actorName', 'action', 'moduleName', 'version', 'timestamp'])
+        && isValidString(request.resource.data.logId, 1, 80)
+        && request.resource.data.action != 'certificate_verification'
+        && request.resource.data.action != 'Certificate Verified';
+    }
+
+    match /notifications/{notificationId} {
+      allow read: if true;
+      allow create, update: if request.resource.data.keys().hasAll(['notificationId', 'category', 'title', 'message'])
+        && request.resource.data.category in ['TRAINING_UPDATE', 'CONTENT_EDIT_REQUEST', 'SYSTEM_NOTIFICATION'];
+      allow delete: if true;
+    }
+
+    match /settings/{settingId} {
+      allow read: if true;
+      allow create, update: if request.resource.data.keys().hasAll(['settingId', 'trainingUpdates', 'contentEditRequests', 'systemNotifications']);
+    }
+  }
+}
